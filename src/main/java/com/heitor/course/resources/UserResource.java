@@ -1,19 +1,33 @@
 package com.heitor.course.resources;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.heitor.course.entity.User;
+import com.heitor.course.services.UserService;
 
 @RestController
 @RequestMapping(value="/users")
 public class UserResource {
+	
+	@Autowired
+	private UserService service;
 
 	@GetMapping
-	public ResponseEntity<User> findAl(){
-		User u = new User(111l, "Maria", "99999999999", "maria@gmail","999090");
-		return ResponseEntity.ok().body(u);
+	public ResponseEntity<List<User>> findAl(){
+		List<User> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<User> findById(@PathVariable Long id){
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
 	}
 }
