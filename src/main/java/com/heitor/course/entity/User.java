@@ -14,23 +14,25 @@ public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String nome;
 	private String phone;
 	private String email;
+	private String password;
 	
 	public User() {
 	}
 
-	public User(long id, String nome, String phone, String email) {
+	public User(Long id, String nome, String phone, String email, String password) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.phone = phone;
 		this.email = email;
+		this.password = password;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -61,6 +63,14 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPassWord() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public int hashCode() {
@@ -86,7 +96,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nome=" + nome + ", phone=" + phone + ", email=" + email + "]";
+		return "User [id=" + id + ", nome=" + nome + ", phone=" + phone + ", email=" + email + ", password="+ password +"]";
 	}
 	
 	
